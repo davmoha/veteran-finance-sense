@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -304,20 +303,71 @@ const InvestmentAnalyzer = () => {
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="result-highlight text-center">
-              <div className="text-sm text-muted-foreground mb-2">Cash-on-Cash Return</div>
-              <div className="gold-highlight text-2xl">{formatPercentage(results.cocReturn)}</div>
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
+                Cash-on-Cash Return
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <div className="space-y-2">
+                        <p className="font-semibold">Cash-on-Cash Return Standards:</p>
+                        <p>• 6%–10% → Average to decent return (stable, lower-risk markets)</p>
+                        <p>• 10%–15% → Strong return (value-add or emerging markets)</p>
+                        <p>• 15%+ → Excellent return (higher risk, distressed properties, or creative financing)</p>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <div className="text-primary text-2xl font-bold">{formatPercentage(results.cocReturn)}</div>
               <div className="text-xs text-muted-foreground mt-1">Annual Cash Flow / Total Investment</div>
             </div>
 
             <div className="result-highlight text-center">
-              <div className="text-sm text-muted-foreground mb-2">Internal Rate of Return</div>
-              <div className="gold-highlight text-2xl">{formatPercentage(results.irr)}</div>
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
+                Internal Rate of Return
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <div className="space-y-2">
+                        <p className="font-semibold">What's a "Good" IRR?</p>
+                        <p>• Passive Investors: 10%–15% (lower risk, stable markets)</p>
+                        <p>• Active Investors (Value-Add): 15%–25% (requires hands-on effort)</p>
+                        <p>• Aggressive Investors (Development, Short-Term Rentals): 20%–30%+ (high risk/reward)</p>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <div className="text-primary text-2xl font-bold">{formatPercentage(results.irr)}</div>
               <div className="text-xs text-muted-foreground mt-1">Annualized total return</div>
             </div>
 
             <div className="result-highlight text-center">
-              <div className="text-sm text-muted-foreground mb-2">Net Present Value</div>
-              <div className="gold-highlight text-2xl">{formatCurrency(results.npv)}</div>
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
+                Net Present Value
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <div className="space-y-2">
+                        <p className="font-semibold">NPV Guidelines:</p>
+                        <p>• Positive NPV = Good (exceeds your required return)</p>
+                        <p>• Higher NPV = Better (more profit in present-value terms)</p>
+                        <p>• Negative NPV = Walk away (doesn't meet your return threshold)</p>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <div className="text-primary text-2xl font-bold">{formatCurrency(results.npv)}</div>
               <div className="text-xs text-muted-foreground mt-1">Present value of future cash flows</div>
             </div>
           </div>
@@ -325,7 +375,7 @@ const InvestmentAnalyzer = () => {
           <div className="result-highlight bg-accent/20">
             <div className="text-center">
               <div className="text-sm text-muted-foreground mb-2">Annual Cash Flow</div>
-              <div className="gold-highlight text-xl">{formatCurrency(results.annualCashFlow)}</div>
+              <div className="text-primary text-xl font-bold">{formatCurrency(results.annualCashFlow)}</div>
             </div>
           </div>
         </div>

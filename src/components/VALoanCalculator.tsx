@@ -86,7 +86,7 @@ const VALoanCalculator = () => {
                 variant="outline"
                 size="sm"
                 className="w-full mt-2"
-                onClick={() => window.open('https://www.fhfa.gov/DataTools/Downloads/Pages/Conforming-Loan-Limits.aspx', '_blank')}
+                onClick={() => window.open('https://www.fhfa.gov/sites/default/files/2024-11/FullCountyLoanLimitList2025_HERA-BASED_FINAL_FLAT.xlsx', '_blank')}
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 Find Your County Limit

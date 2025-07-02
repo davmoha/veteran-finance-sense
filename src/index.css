@@ -45,7 +45,7 @@
 /* Custom utility classes for Invest iSense */
 @layer utilities {
   .gold-highlight {
-    @apply text-accent font-bold text-lg;
+    @apply text-primary font-bold text-lg;
   }
   
   .patriot-gradient {
