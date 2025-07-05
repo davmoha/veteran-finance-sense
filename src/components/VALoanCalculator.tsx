@@ -8,7 +8,7 @@ import { ExternalLink, Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const VALoanCalculator = () => {
-  const [countyLimit, setCountyLimit] = useState<string>('');
+  const [countyLimit, setCountyLimit] = useState<string>('806500');
   const [existingLoanAmount, setExistingLoanAmount] = useState<string>('');
   const [results, setResults] = useState({
     maxEntitlement: 0,
@@ -77,7 +77,7 @@ const VALoanCalculator = () => {
               <Input
                 id="county-limit"
                 type="number"
-                placeholder="766,550"
+                placeholder="806,500"
                 value={countyLimit}
                 onChange={(e) => setCountyLimit(e.target.value)}
                 className="text-lg"

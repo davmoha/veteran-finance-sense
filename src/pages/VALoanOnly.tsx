@@ -1,4 +1,3 @@
-
 import VALoanCalculator from '@/components/VALoanCalculator';
 
 const VALoanOnly = () => {
@@ -25,14 +24,7 @@ const VALoanOnly = () => {
         {/* Page Headline */}
         <div className="text-left space-y-4">
           <p className="text-lg leading-relaxed text-foreground">
-            The VA home loan entitlement is one of the most underused VA benefits available to 
-            veterans, mainly because realtors and some lenders don't understand how they work and 
-            make it sound complicated, which deters buyers. The amount the Department of Veterans 
-            Affairs (VA) guarantees on a home loan, which helps determine how much a veteran can 
-            borrow without a down payment. Essentially, it's the maximum amount the VA will repay a 
-            lender if a veteran defaults on the loan. Use the fields below to determine what your total 
-            entitlement is. If you already have a VA backed Home-loan, this tool can show you how 
-            much entitlement you have left.
+            Many veterans overlook the VA home loan entitlement, despite it being one of their most valuable benefits. A primary reason for this underutilization is that realtors and some lenders frequently misunderstand how these entitlements work, leading them to misrepresent the process as complex and consequently discouraging buyers. The entitlement itself is the amount the Department of Veterans Affairs (VA) guarantees on a home loan, and it plays a crucial role in determining the maximum amount a veteran can borrow without a down payment. In essence, it's the highest amount the VA will repay a lender should a veteran default on the loan. Utilize the fields provided below to ascertain your total entitlement. Furthermore, if you already possess a VA-backed home loan, this tool can illustrate your remaining entitlement.
           </p>
         </div>
 
