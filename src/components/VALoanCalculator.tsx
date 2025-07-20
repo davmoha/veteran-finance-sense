@@ -118,13 +118,13 @@ const VALoanCalculator = () => {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4" data-testid="va-loan-results">
             <h3 className="font-semibold text-lg text-primary">Your VA Loan Benefits</h3>
             
             <div className="result-highlight">
               <div className="flex justify-between items-center">
                 <span className="font-medium">Maximum Entitlement:</span>
-                <span className="gold-highlight">{formatCurrency(results.maxEntitlement)}</span>
+                <span className="gold-highlight" data-testid="max-entitlement">{formatCurrency(results.maxEntitlement)}</span>
               </div>
             </div>
 
@@ -138,14 +138,14 @@ const VALoanCalculator = () => {
             <div className="result-highlight">
               <div className="flex justify-between items-center">
                 <span className="font-medium">Remaining Entitlement:</span>
-                <span className="gold-highlight">{formatCurrency(results.remainingEntitlement)}</span>
+                <span className="gold-highlight" data-testid="remaining-entitlement">{formatCurrency(results.remainingEntitlement)}</span>
               </div>
             </div>
 
             <div className="result-highlight bg-accent/20">
               <div className="flex justify-between items-center">
                 <span className="font-semibold">Max Loan (Zero Down):</span>
-                <span className="gold-highlight text-xl">{formatCurrency(results.maxNewLoan)}</span>
+                <span className="gold-highlight text-xl" data-testid="max-loan-amount">{formatCurrency(results.maxNewLoan)}</span>
               </div>
             </div>
           </div>

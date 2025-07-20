@@ -298,7 +298,7 @@ const InvestmentAnalyzer = () => {
         <Separator />
 
         {/* Results Summary */}
-        <div className="space-y-4">
+        <div className="space-y-4" data-testid="investment-results">
           <h3 className="font-semibold text-xl text-primary text-center">Investment Analysis Results</h3>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -321,7 +321,7 @@ const InvestmentAnalyzer = () => {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-              <div className="text-primary text-2xl font-bold">{formatPercentage(results.cocReturn)}</div>
+              <div className="text-primary text-2xl font-bold" data-testid="coc-return">{formatPercentage(results.cocReturn)}</div>
               <div className="text-xs text-muted-foreground mt-1">Annual Cash Flow / Total Investment</div>
             </div>
 
@@ -344,7 +344,7 @@ const InvestmentAnalyzer = () => {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-              <div className="text-primary text-2xl font-bold">{formatPercentage(results.irr)}</div>
+              <div className="text-primary text-2xl font-bold" data-testid="irr">{formatPercentage(results.irr)}</div>
               <div className="text-xs text-muted-foreground mt-1">Annualized total return</div>
             </div>
 
@@ -367,7 +367,7 @@ const InvestmentAnalyzer = () => {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-              <div className="text-primary text-2xl font-bold">{formatCurrency(results.npv)}</div>
+              <div className="text-primary text-2xl font-bold" data-testid="npv">{formatCurrency(results.npv)}</div>
               <div className="text-xs text-muted-foreground mt-1">Present value of future cash flows</div>
             </div>
           </div>
@@ -375,7 +375,7 @@ const InvestmentAnalyzer = () => {
           <div className="result-highlight bg-accent/20">
             <div className="text-center">
               <div className="text-sm text-muted-foreground mb-2">Annual Cash Flow</div>
-              <div className="text-primary text-xl font-bold">{formatCurrency(results.annualCashFlow)}</div>
+              <div className="text-primary text-xl font-bold" data-testid="annual-cash-flow">{formatCurrency(results.annualCashFlow)}</div>
             </div>
           </div>
         </div>

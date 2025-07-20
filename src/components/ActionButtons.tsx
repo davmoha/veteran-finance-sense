@@ -56,22 +56,37 @@ const ActionButtons = () => {
   };
 
   const handleExport = () => {
-    // Get current results from the page
-    const results = document.querySelectorAll('.gold-highlight');
     let exportData = 'Invest iSense - Analysis Results\n';
     exportData += '=====================================\n\n';
     exportData += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
     
-    // This is a simplified export - in a real app you'd want to access actual state
-    exportData += 'VA Loan Entitlement Results:\n';
-    exportData += '• Maximum Entitlement: [See calculator]\n';
-    exportData += '• Remaining Entitlement: [See calculator]\n';
-    exportData += '• Max Loan Amount: [See calculator]\n\n';
+    // Extract VA Loan results from the page
+    const vaResults = document.querySelector('[data-testid="va-loan-results"]');
+    if (vaResults) {
+      exportData += 'VA Loan Entitlement Results:\n';
+      const maxEntitlement = vaResults.querySelector('[data-testid="max-entitlement"]')?.textContent || 'Not calculated';
+      const remainingEntitlement = vaResults.querySelector('[data-testid="remaining-entitlement"]')?.textContent || 'Not calculated';
+      const maxLoanAmount = vaResults.querySelector('[data-testid="max-loan-amount"]')?.textContent || 'Not calculated';
+      
+      exportData += `• Maximum Entitlement: ${maxEntitlement}\n`;
+      exportData += `• Remaining Entitlement: ${remainingEntitlement}\n`;
+      exportData += `• Max Loan Amount: ${maxLoanAmount}\n\n`;
+    }
     
-    exportData += 'Investment Analysis Results:\n';
-    exportData += '• Cash-on-Cash Return: [See calculator]\n';
-    exportData += '• Internal Rate of Return: [See calculator]\n';
-    exportData += '• Net Present Value: [See calculator]\n\n';
+    // Extract Investment Analysis results from the page
+    const investmentResults = document.querySelector('[data-testid="investment-results"]');
+    if (investmentResults) {
+      exportData += 'Investment Analysis Results:\n';
+      const cocReturn = investmentResults.querySelector('[data-testid="coc-return"]')?.textContent || 'Not calculated';
+      const irr = investmentResults.querySelector('[data-testid="irr"]')?.textContent || 'Not calculated';
+      const npv = investmentResults.querySelector('[data-testid="npv"]')?.textContent || 'Not calculated';
+      const annualCashFlow = investmentResults.querySelector('[data-testid="annual-cash-flow"]')?.textContent || 'Not calculated';
+      
+      exportData += `• Cash-on-Cash Return: ${cocReturn}\n`;
+      exportData += `• Internal Rate of Return: ${irr}\n`;
+      exportData += `• Net Present Value: ${npv}\n`;
+      exportData += `• Annual Cash Flow: ${annualCashFlow}\n\n`;
+    }
     
     exportData += 'Disclaimer: This tool is for educational purposes only.\n';
     exportData += 'Consult with financial and real estate professionals for personalized advice.';
