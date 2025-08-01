@@ -68,9 +68,9 @@ const ActionButtons = () => {
       
       // Input parameters
       exportData += 'Input Parameters:\n';
-      const usedEntitlement = (document.querySelector('#used-entitlement') as HTMLInputElement)?.value || '0';
+      const existingLoanAmount = (document.querySelector('#existing-loan') as HTMLInputElement)?.value || '0';
       const countyLimit = (document.querySelector('#county-limit') as HTMLInputElement)?.value || '0';
-      exportData += `• Used Entitlement: $${parseFloat(usedEntitlement).toLocaleString()}\n`;
+      exportData += `• Existing VA Loan Amount: $${parseFloat(existingLoanAmount).toLocaleString()}\n`;
       exportData += `• County Conforming Loan Limit: $${parseFloat(countyLimit).toLocaleString()}\n\n`;
       
       // Results
