@@ -13,10 +13,12 @@ const InvestmentAnalyzer = () => {
     downPaymentPercent: '20',
     interestRate: '7.5',
     loanTermYears: '30',
-    annualRentalIncome: '',
+    closingCosts: '4000',
+    monthlyRentalIncome: '',
     monthlyTaxes: '',
     monthlyInsurance: '',
     monthlyMaintenance: '',
+    monthlyManagementFee: '',
     holdingPeriodYears: '10',
     appreciationRate: '3',
     discountRate: '8'
@@ -28,7 +30,9 @@ const InvestmentAnalyzer = () => {
     npv: 0,
     monthlyPayment: 0,
     totalInvestment: 0,
-    annualCashFlow: 0
+    annualCashFlow: 0,
+    monthlyNet: 0,
+    annualNet: 0
   });
 
   useEffect(() => {
@@ -40,16 +44,18 @@ const InvestmentAnalyzer = () => {
     const downPaymentPercent = parseFloat(inputs.downPaymentPercent) || 0;
     const interestRate = parseFloat(inputs.interestRate) || 0;
     const loanTermYears = parseFloat(inputs.loanTermYears) || 0;
-    const annualRentalIncome = parseFloat(inputs.annualRentalIncome) || 0;
+    const closingCosts = parseFloat(inputs.closingCosts) || 0;
+    const monthlyRentalIncome = parseFloat(inputs.monthlyRentalIncome) || 0;
     const monthlyTaxes = parseFloat(inputs.monthlyTaxes) || 0;
     const monthlyInsurance = parseFloat(inputs.monthlyInsurance) || 0;
     const monthlyMaintenance = parseFloat(inputs.monthlyMaintenance) || 0;
+    const monthlyManagementFee = parseFloat(inputs.monthlyManagementFee) || 0;
     const holdingPeriodYears = parseFloat(inputs.holdingPeriodYears) || 0;
     const appreciationRate = parseFloat(inputs.appreciationRate) || 0;
     const discountRate = parseFloat(inputs.discountRate) || 0;
 
     if (purchasePrice === 0) {
-      setResults({ cocReturn: 0, irr: 0, npv: 0, monthlyPayment: 0, totalInvestment: 0, annualCashFlow: 0 });
+      setResults({ cocReturn: 0, irr: 0, npv: 0, monthlyPayment: 0, totalInvestment: 0, annualCashFlow: 0, monthlyNet: 0, annualNet: 0 });
       return;
     }
 
@@ -63,13 +69,15 @@ const InvestmentAnalyzer = () => {
     const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
                           (Math.pow(1 + monthlyRate, numPayments) - 1);
 
-    // Annual calculations
-    const totalMonthlyExpenses = monthlyPayment + monthlyTaxes + monthlyInsurance + monthlyMaintenance;
+    // Monthly and annual calculations
+    const totalMonthlyExpenses = monthlyPayment + monthlyTaxes + monthlyInsurance + monthlyMaintenance + monthlyManagementFee;
+    const monthlyNet = monthlyRentalIncome - totalMonthlyExpenses;
+    const annualNet = monthlyNet * 12;
+    const annualRentalIncome = monthlyRentalIncome * 12;
     const annualExpenses = totalMonthlyExpenses * 12;
     const annualCashFlow = annualRentalIncome - annualExpenses;
 
-    // Closing costs estimate (2% of purchase price)
-    const closingCosts = purchasePrice * 0.02;
+    // Total investment calculation
     const totalInvestment = downPayment + closingCosts;
 
     // Cash-on-Cash Return
@@ -94,7 +102,9 @@ const InvestmentAnalyzer = () => {
       npv,
       monthlyPayment,
       totalInvestment,
-      annualCashFlow
+      annualCashFlow,
+      monthlyNet,
+      annualNet
     });
   };
 
@@ -173,6 +183,17 @@ const InvestmentAnalyzer = () => {
                 onChange={(e) => handleInputChange('loanTermYears', e.target.value)}
               />
             </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="closing-costs">Closing Costs</Label>
+              <Input
+                id="closing-costs"
+                type="number"
+                placeholder="4000"
+                value={inputs.closingCosts}
+                onChange={(e) => handleInputChange('closingCosts', e.target.value)}
+              />
+            </div>
           </div>
 
           {/* Income & Expenses */}
@@ -180,13 +201,13 @@ const InvestmentAnalyzer = () => {
             <h3 className="font-semibold text-lg text-primary">Income & Expenses</h3>
             
             <div className="space-y-2">
-              <Label htmlFor="rental-income">Annual Rental Income</Label>
+              <Label htmlFor="rental-income">Monthly Rental Income</Label>
               <Input
                 id="rental-income"
                 type="number"
-                placeholder="60000"
-                value={inputs.annualRentalIncome}
-                onChange={(e) => handleInputChange('annualRentalIncome', e.target.value)}
+                placeholder="5000"
+                value={inputs.monthlyRentalIncome}
+                onChange={(e) => handleInputChange('monthlyRentalIncome', e.target.value)}
               />
             </div>
 
@@ -220,6 +241,17 @@ const InvestmentAnalyzer = () => {
                 placeholder="400"
                 value={inputs.monthlyMaintenance}
                 onChange={(e) => handleInputChange('monthlyMaintenance', e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="monthly-management-fee">Monthly Management Fee</Label>
+              <Input
+                id="monthly-management-fee"
+                type="number"
+                placeholder="250"
+                value={inputs.monthlyManagementFee}
+                onChange={(e) => handleInputChange('monthlyManagementFee', e.target.value)}
               />
             </div>
           </div>
@@ -288,6 +320,12 @@ const InvestmentAnalyzer = () => {
             <div className="pt-4 space-y-2">
               <div className="text-sm text-muted-foreground">Monthly Payment:</div>
               <div className="gold-highlight">{formatCurrency(results.monthlyPayment)}</div>
+              
+              <div className="text-sm text-muted-foreground">Monthly Net:</div>
+              <div className="gold-highlight">{formatCurrency(results.monthlyNet)}</div>
+              
+              <div className="text-sm text-muted-foreground">Annual Net:</div>
+              <div className="gold-highlight">{formatCurrency(results.annualNet)}</div>
               
               <div className="text-sm text-muted-foreground">Total Investment:</div>
               <div className="gold-highlight">{formatCurrency(results.totalInvestment)}</div>

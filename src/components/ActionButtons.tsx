@@ -107,11 +107,13 @@ const ActionButtons = () => {
       const monthlyTaxes = (document.querySelector('#monthly-taxes') as HTMLInputElement)?.value || '0';
       const monthlyInsurance = (document.querySelector('#monthly-insurance') as HTMLInputElement)?.value || '0';
       const monthlyMaintenance = (document.querySelector('#monthly-maintenance') as HTMLInputElement)?.value || '0';
+      const monthlyManagementFee = (document.querySelector('#monthly-management-fee') as HTMLInputElement)?.value || '0';
       
-      exportData += `• Annual Rental Income: $${parseFloat(rentalIncome).toLocaleString()}\n`;
+      exportData += `• Monthly Rental Income: $${parseFloat(rentalIncome).toLocaleString()}\n`;
       exportData += `• Monthly Property Taxes: $${parseFloat(monthlyTaxes).toLocaleString()}\n`;
       exportData += `• Monthly Insurance: $${parseFloat(monthlyInsurance).toLocaleString()}\n`;
-      exportData += `• Monthly Maintenance: $${parseFloat(monthlyMaintenance).toLocaleString()}\n\n`;
+      exportData += `• Monthly Maintenance: $${parseFloat(monthlyMaintenance).toLocaleString()}\n`;
+      exportData += `• Monthly Management Fee: $${parseFloat(monthlyManagementFee).toLocaleString()}\n\n`;
       
       exportData += 'Analysis Parameters:\n';
       const holdingPeriod = (document.querySelector('#holding-period') as HTMLInputElement)?.value || '0';
@@ -220,22 +222,22 @@ const ActionButtons = () => {
       <CardContent className="pt-6">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
-            onClick={handleShare}
-            className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
-            size="lg"
-          >
-            <Share2 className="h-5 w-5 mr-2" />
-            Share Results
-          </Button>
-          
-          <Button 
             onClick={handleExport}
             variant="outline"
             size="lg"
             className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
           >
             <Download className="h-5 w-5 mr-2" />
-            Export Analysis
+            Analysis Recommendation
+          </Button>
+          
+          <Button 
+            onClick={handleShare}
+            className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+            size="lg"
+          >
+            <Share2 className="h-5 w-5 mr-2" />
+            Share Results
           </Button>
           
           <Button 
