@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { ExternalLink, Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { SecureExternalLink } from '@/components/SecureExternalLink';
+import { useSecureFormData } from '@/hooks/useSecureFormData';
 
 const VALoanCalculator = () => {
+  const { sanitizeNumericInput } = useSecureFormData();
   const [countyLimit, setCountyLimit] = useState<string>('806500');
   const [existingLoanAmount, setExistingLoanAmount] = useState<string>('');
   const [results, setResults] = useState({
@@ -79,18 +81,16 @@ const VALoanCalculator = () => {
                 type="number"
                 placeholder="806,500"
                 value={countyLimit}
-                onChange={(e) => setCountyLimit(e.target.value)}
+                onChange={(e) => setCountyLimit(sanitizeNumericInput(e.target.value))}
                 className="text-lg"
               />
-              <Button
-                variant="outline"
-                size="sm"
+              <SecureExternalLink 
+                href="https://www.fhfa.gov/sites/default/files/2024-11/FullCountyLoanLimitList2025_HERA-BASED_FINAL_FLAT.xlsx"
                 className="w-full mt-2"
-                onClick={() => window.open('https://www.fhfa.gov/sites/default/files/2024-11/FullCountyLoanLimitList2025_HERA-BASED_FINAL_FLAT.xlsx', '_blank')}
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 Find Your County Limit
-              </Button>
+              </SecureExternalLink>
             </div>
 
             <div className="space-y-2">
@@ -112,7 +112,7 @@ const VALoanCalculator = () => {
                 type="number"
                 placeholder="0"
                 value={existingLoanAmount}
-                onChange={(e) => setExistingLoanAmount(e.target.value)}
+                onChange={(e) => setExistingLoanAmount(sanitizeNumericInput(e.target.value))}
                 className="text-lg"
               />
             </div>

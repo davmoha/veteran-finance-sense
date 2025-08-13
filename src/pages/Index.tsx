@@ -3,6 +3,7 @@ import VALoanCalculator from '@/components/VALoanCalculator';
 import InvestmentAnalyzer from '@/components/InvestmentAnalyzer';
 import ActionButtons from '@/components/ActionButtons';
 import { Separator } from '@/components/ui/separator';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 const Index = () => {
   return (
@@ -26,17 +27,23 @@ const Index = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
         {/* VA Loan Calculator Section */}
-        <VALoanCalculator />
+        <ErrorBoundary>
+          <VALoanCalculator />
+        </ErrorBoundary>
 
         <Separator className="my-8" />
 
         {/* Investment Analyzer Section */}
-        <InvestmentAnalyzer />
+        <ErrorBoundary>
+          <InvestmentAnalyzer />
+        </ErrorBoundary>
 
         <Separator className="my-8" />
 
         {/* Action Buttons */}
-        <ActionButtons />
+        <ErrorBoundary>
+          <ActionButtons />
+        </ErrorBoundary>
 
         {/* Footer */}
         <div className="text-center py-8 space-y-4">
