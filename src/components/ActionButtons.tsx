@@ -49,30 +49,34 @@ const ActionButtons = () => {
 
   const handleExport = () => {
     try {
-      // Define secure form data selectors
-      const vaSelectors = {
-        existingLoanAmount: '#existing-loan',
-        countyLimit: '#county-limit'
+      // Define secure form data selectors using document.querySelector for cross-component access
+      const getInputValue = (id: string): string => {
+        const element = document.getElementById(id) as HTMLInputElement;
+        return element?.value || '0';
       };
 
-      const investmentSelectors = {
-        purchasePrice: '#purchase-price',
-        downPayment: '#down-payment',
-        interestRate: '#interest-rate',
-        loanTerm: '#loan-term',
-        rentalIncome: '#rental-income',
-        monthlyTaxes: '#monthly-taxes',
-        monthlyInsurance: '#monthly-insurance',
-        monthlyMaintenance: '#monthly-maintenance',
-        monthlyManagementFee: '#monthly-management-fee',
-        holdingPeriod: '#holding-period',
-        appreciationRate: '#appreciation-rate',
-        discountRate: '#discount-rate'
+      // Get VA loan data
+      const vaData = {
+        existingLoanAmount: getInputValue('existing-loan'),
+        countyLimit: getInputValue('county-limit')
       };
 
-      // Get form data securely
-      const vaData = getFormData(vaSelectors);
-      const investmentData = getFormData(investmentSelectors);
+      // Get investment data
+      const investmentData = {
+        purchasePrice: getInputValue('purchase-price'),
+        downPayment: getInputValue('down-payment'),
+        interestRate: getInputValue('interest-rate'),
+        loanTerm: getInputValue('loan-term'),
+        closingCosts: getInputValue('closing-costs'),
+        rentalIncome: getInputValue('rental-income'),
+        monthlyTaxes: getInputValue('monthly-taxes'),
+        monthlyInsurance: getInputValue('monthly-insurance'),
+        monthlyMaintenance: getInputValue('monthly-maintenance'),
+        monthlyManagementFee: getInputValue('monthly-management-fee'),
+        holdingPeriod: getInputValue('holding-period'),
+        appreciationRate: getInputValue('appreciation-rate'),
+        discountRate: getInputValue('discount-rate')
+      };
 
       let exportData = 'Invest iSense - Analysis Results\n';
       exportData += '=====================================\n\n';
