@@ -52,17 +52,8 @@ const ActionButtons = () => {
       // Define secure form data selectors using document.querySelector for cross-component access
       const getInputValue = (id: string): string => {
         const element = document.getElementById(id) as HTMLInputElement;
-        console.log(`Looking for element with ID: ${id}`, element);
-        console.log(`Element value: ${element?.value}`);
         return element?.value || '0';
       };
-
-      // Debug: Log all input elements in the document
-      const allInputs = document.querySelectorAll('input[type="number"]');
-      console.log('All number inputs found:', allInputs);
-      allInputs.forEach(input => {
-        console.log(`Input ID: ${input.id}, Value: ${(input as HTMLInputElement).value}`);
-      });
 
       // Get VA loan data
       const vaData = {
@@ -86,9 +77,6 @@ const ActionButtons = () => {
         appreciationRate: getInputValue('appreciation-rate'),
         discountRate: getInputValue('discount-rate')
       };
-
-      console.log('VA Data:', vaData);
-      console.log('Investment Data:', investmentData);
 
       let exportData = 'Invest iSense - Analysis Results\n';
       exportData += '=====================================\n\n';
