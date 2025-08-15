@@ -23,7 +23,8 @@ jobs:
 
       - name: Build
         run: npm run build  # package.json should have "build": "vite build"
-
+name: Copy .htaccess into dist
+run: cp ./.htaccess ./dist/.
       - name: Deploy build to branch
         uses: peaceiris/actions-gh-pages@v3
         with:
