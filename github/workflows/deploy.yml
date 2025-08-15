@@ -10,19 +10,23 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'npm'   # keeps npm cache between runs for speed
+
       - name: Install deps
-        run: npm ci
+        run: npm install
+
       - name: Build
-        run: npm run build
+        run: npm run build   # make sure package.json has "build": "vite build"
+
       - name: Deploy build to branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./dist   # Vite’s default output
           publish_branch: deploy
           force_orphan: true
