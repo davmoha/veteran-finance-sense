@@ -53,7 +53,7 @@ const VALoanCalculator = () => {
     <Card className="calculator-card animate-fade-in">
       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
         <CardTitle className="flex items-center gap-2 text-xl">
-          🇺🇸 VA Loan Entitlement Calculator
+          🇺🇸 US VA Loan Entitlement Calculator
         </CardTitle>
         <CardDescription className="text-primary-foreground/80">
           Calculate your remaining VA loan entitlement and maximum zero-down loan amount
@@ -115,6 +115,9 @@ const VALoanCalculator = () => {
                 onChange={(e) => setExistingLoanAmount(sanitizeNumericInput(e.target.value))}
                 className="text-lg"
               />
+              <p className="text-sm text-muted-foreground italic mt-2">
+                <strong>If you have your full VA loan entitlement, there is no loan limit imposed by the VA. You can get as much as the lender is willing to give you with zero down.</strong>
+              </p>
             </div>
           </div>
 
