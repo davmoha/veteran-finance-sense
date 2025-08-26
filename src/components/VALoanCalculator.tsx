@@ -53,7 +53,7 @@ const VALoanCalculator = () => {
     <Card className="calculator-card animate-fade-in">
       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
         <CardTitle className="flex items-center gap-2 text-xl">
-          🇺🇸 US VA Loan Entitlement Calculator
+          🇺🇸 VA Loan Entitlement Calculator
         </CardTitle>
         <CardDescription className="text-primary-foreground/80">
           Calculate your remaining VA loan entitlement and maximum zero-down loan amount
